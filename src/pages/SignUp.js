@@ -23,7 +23,8 @@ export default class SignUp extends Component {
   };
 
   responseGoogle = (response) => {
-    if (!(response && response.name)) {
+    console.log(response && response.profileObj.name);
+    if (!(response && response.profileObj.name)) {
       window.alert("Something went wrong!");
     } else
       this.props.onSignUp({
