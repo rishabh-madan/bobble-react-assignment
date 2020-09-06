@@ -13,21 +13,27 @@ import keys from "../config/keys";
 
 export default class SignUp extends Component {
   responseFacebook = (response) => {
-    this.props.onSignUp({
-      name: response.name,
-      email: response.email,
-    });
+    if (!(response && response.name)) {
+      window.alert("Something went wrong!");
+    } else
+      this.props.onSignUp({
+        name: response.name,
+        email: response.email,
+      });
   };
 
   responseGoogle = (response) => {
-    this.props.onSignUp({
-      name: response.profileObj.name,
-      email: response.profileObj.email,
-    });
+    if (!(response && response.name)) {
+      window.alert("Something went wrong!");
+    } else
+      this.props.onSignUp({
+        name: response.profileObj.name,
+        email: response.profileObj.email,
+      });
   };
 
   failureGoogle = () => {
-    window.alert("Something went wrong!");
+    // window.alert("Something went wrong!");
   };
 
   render() {
