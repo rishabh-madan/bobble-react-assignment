@@ -5,6 +5,7 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 
 export default class App extends Component {
+  // component state
   state = {
     loggedIn: false,
     userData: {
@@ -13,6 +14,8 @@ export default class App extends Component {
     },
   };
 
+  // checks for the userData stored in localstorage
+  // in case 'userData' is found, the state is updated and relevant screen is rendered
   checkStatus = () => {
     let userDataStr = localStorage.getItem("userData");
     let userData = userDataStr == null ? null : JSON.parse(userDataStr);
@@ -22,9 +25,11 @@ export default class App extends Component {
   };
 
   componentDidMount() {
+    // checks on mounting the component
     this.checkStatus();
   }
 
+  // sets the state to initial state
   logout = () => {
     this.setState({
       ...this.state,
@@ -37,7 +42,9 @@ export default class App extends Component {
     localStorage.setItem("userData", null);
   };
 
-  login = (userData) => {
+  // updates the state (this fn is passed down the tree)
+  signUp = (userData) => {
+    console.log("signup fn:", userData);
     this.setState({
       loggedIn: true,
       userData: {
@@ -45,6 +52,7 @@ export default class App extends Component {
         email: userData.email,
       },
     });
+    // once the user is logged in, it's updated in localstorage also
     localStorage.setItem("userData", JSON.stringify(userData));
   };
 
@@ -56,13 +64,14 @@ export default class App extends Component {
         </div>
         <div className="body">
           <Card>
+            {/* based on the Auth state, Home/SignUp Page is rendered */}
             {this.state.loggedIn ? (
               <Home
                 userData={this.state.userData}
                 onLogoutPressed={this.logout}
               ></Home>
             ) : (
-              <SignUp onSignUp={this.login}></SignUp>
+              <SignUp onSignUp={this.signUp}></SignUp>
             )}
           </Card>
         </div>

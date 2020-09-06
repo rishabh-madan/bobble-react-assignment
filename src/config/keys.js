@@ -1,3 +1,5 @@
+// holds the App IDs for authentication
+
 module.exports = {
   facebookAppId: "305698730310196",
   googleClientId:

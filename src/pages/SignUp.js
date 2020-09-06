@@ -23,10 +23,14 @@ export default class SignUp extends Component {
   };
 
   responseGoogle = (response) => {
-    console.log(response && response.profileObj.name);
+    // if response is valid, the user is signed up
     if (!(response && response.profileObj.name)) {
       window.alert("Something went wrong!");
-    } else
+      console.log("Something went wrong!", "response:");
+      console.log(response);
+    }
+    // this updates the App Component state
+    else
       this.props.onSignUp({
         name: response.profileObj.name,
         email: response.profileObj.email,
@@ -34,7 +38,7 @@ export default class SignUp extends Component {
   };
 
   failureGoogle = () => {
-    // window.alert("Something went wrong!");
+    window.alert("Something went wrong!");
   };
 
   render() {
@@ -52,6 +56,7 @@ export default class SignUp extends Component {
           <Container>
             <Row>
               <Col>
+                {/* for google sign in */}
                 <GoogleLogin
                   clientId={keys.googleClientId}
                   buttonText="Login"
@@ -93,6 +98,7 @@ export default class SignUp extends Component {
           </Container>
           <hr />
         </div>
+        {/* signup form is separated in another component */}
         <SignUpForm onSignUp={this.props.onSignUp}></SignUpForm>
       </Card.Body>
     );

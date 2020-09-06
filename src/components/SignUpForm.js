@@ -10,9 +10,10 @@ export default class SignUpForm extends Component {
     password: "",
   };
 
+  // called on clicking SignUp button
   handleSubmit = async (e) => {
     e.preventDefault();
-
+    // form data validation
     if (
       !(
         this.state.firstName &&
@@ -25,6 +26,7 @@ export default class SignUpForm extends Component {
     else if (this.state.password.length < 8)
       window.alert("Password must be longer than 8 characters!");
     else {
+      // if the form data is valid, API request is sent
       var data = JSON.stringify({
         email: this.state.email,
         password: this.state.password,
@@ -40,11 +42,13 @@ export default class SignUpForm extends Component {
       };
       try {
         await axios(request);
+        // if the API request is successful, onSignUp is called, which updates the App Component State
         this.props.onSignUp({
           name: `${this.state.firstName} ${this.state.lastName}`,
           email: this.state.email,
         });
       } catch (error) {
+        // error handling
         window.alert("Something went wrong at server-side!");
       }
     }
@@ -52,6 +56,7 @@ export default class SignUpForm extends Component {
 
   render() {
     return (
+      //  form fields
       <Form>
         <Form.Group controlId="fName">
           <Form.Control

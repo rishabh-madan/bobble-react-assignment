@@ -8,6 +8,7 @@ export default function Home(props) {
       <div className="text-center">
         <h6>Home</h6>
         <br />
+        {/* shows user name from the props(userData) passed from App */}
         <h3>{`Hi, ${user.name}!`}</h3>
         <Card.Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
