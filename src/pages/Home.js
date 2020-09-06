@@ -16,9 +16,11 @@ export default function Home(props) {
         <hr />
         <p>{`Email Address: ${user.email}`}</p>
       </div>
-      <Button className="primary" onClick={props.onLogoutPressed}>
-        Logout
-      </Button>
+      <div className="text-center">
+        <Button className="primary" onClick={props.onLogoutPressed}>
+          Logout
+        </Button>
+      </div>
     </Card.Body>
   );
 }
