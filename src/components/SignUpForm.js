@@ -119,7 +119,7 @@ export default class SignUpForm extends Component {
           </a>
         </p>
         <div className="text-center">
-          <Button className="btn" onClick={this.handleSubmit}>
+          <Button className="btn-full-width" onClick={this.handleSubmit}>
             SIGN UP
           </Button>
         </div>
