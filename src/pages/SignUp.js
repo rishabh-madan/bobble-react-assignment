@@ -38,7 +38,7 @@ export default class SignUp extends Component {
   };
 
   failureGoogle = () => {
-    window.alert("Something went wrong!");
+    // window.alert("Something went wrong!");
   };
 
   render() {
